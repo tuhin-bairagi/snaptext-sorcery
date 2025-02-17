@@ -34,14 +34,17 @@ const Editor = () => {
     const img = new Image();
     img.onload = () => {
       // Create fabric image and set as background
-      new FabricImage.fromURL(imageData, {
-        scaleX: canvas.width! / img.width,
-        scaleY: canvas.height! / img.height,
-      }).then(fabricImage => {
-        canvas.setBackgroundColor('#ffffff', () => {
-          canvas.backgroundImage = fabricImage;
-          canvas.renderAll();
-        });
+      FabricImage.fromURL(imageData).then(fabricImage => {
+        // Calculate scale to fit the canvas
+        const scale = Math.min(
+          canvas.width! / img.width,
+          canvas.height! / img.height
+        );
+        
+        fabricImage.scale(scale);
+        canvas.backgroundColor = '#ffffff';
+        canvas.backgroundImage = fabricImage;
+        canvas.renderAll();
       });
     };
     img.src = imageData;
