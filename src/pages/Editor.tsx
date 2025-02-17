@@ -21,18 +21,30 @@ const Editor = () => {
 
     if (!canvasRef.current) return;
 
-    const canvas = new FabricCanvas(canvasRef.current);
+    // Initialize canvas with default dimensions
+    const canvas = new FabricCanvas(canvasRef.current, {
+      width: 800,
+      height: 600,
+      backgroundColor: '#ffffff'
+    });
+    
     setCanvas(canvas);
 
+    // Load the image
     const img = new Image();
     img.onload = () => {
-      canvas.setWidth(img.width);
-      canvas.setHeight(img.height);
+      // Update canvas dimensions to match image
+      canvas.setDimensions({
+        width: img.width,
+        height: img.height
+      });
       
-      // Create a fabric.js Image object from the loaded image
+      // Create fabric image and set as background
       FabricImage.fromURL(imageData, (fabricImage) => {
-        canvas.backgroundImage = fabricImage;
-        canvas.renderAll();
+        if (fabricImage.width && fabricImage.height) {
+          fabricImage.scaleToWidth(canvas.width || img.width);
+          canvas.setBackgroundImage(fabricImage, canvas.renderAll.bind(canvas));
+        }
       });
     };
     img.src = imageData;
