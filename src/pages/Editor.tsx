@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Canvas as FabricCanvas, Text } from "fabric";
+import { Canvas as FabricCanvas, Text, Image as FabricImage } from "fabric";
 import { Undo2, Redo2, Download, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
@@ -28,7 +28,12 @@ const Editor = () => {
     img.onload = () => {
       canvas.setWidth(img.width);
       canvas.setHeight(img.height);
-      canvas.setBackgroundImage(imageData, canvas.renderAll.bind(canvas));
+      
+      // Create a fabric.js Image object from the loaded image
+      FabricImage.fromURL(imageData, (fabricImage) => {
+        canvas.backgroundImage = fabricImage;
+        canvas.renderAll();
+      });
     };
     img.src = imageData;
 
@@ -60,6 +65,7 @@ const Editor = () => {
     link.href = canvas.toDataURL({
       format: "png",
       quality: 0.8,
+      multiplier: 1,
     });
     
     document.body.appendChild(link);
