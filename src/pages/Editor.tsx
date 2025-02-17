@@ -31,8 +31,10 @@ const Editor = () => {
     // Enable text editing on double click
     canvas.on('mouse:dblclick', (e) => {
       if (e.target && e.target instanceof Text) {
-        e.target.enterEditing();
-        e.target.selectAll();
+        canvas.setActiveObject(e.target);
+        // Make text editable on double click
+        e.target.set('editable', true);
+        canvas.requestRenderAll();
       }
     });
 
@@ -65,22 +67,19 @@ const Editor = () => {
   const addText = () => {
     if (!canvas) return;
 
-    const text = new Text("Click to edit", {
+    const text = new Text("Double-click to edit", {
       left: 100,
       top: 100,
       fontSize: 20,
       fill: "#000000",
       editable: true,
+      selectable: true,
     });
 
     canvas.add(text);
     canvas.setActiveObject(text);
-    canvas.renderAll();
+    canvas.requestRenderAll();
     
-    // Enter editing mode immediately for new text
-    text.enterEditing();
-    text.selectAll();
-
     toast.info("Double-click any text to edit it");
   };
 
