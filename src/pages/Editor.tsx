@@ -33,18 +33,15 @@ const Editor = () => {
     // Load the image
     const img = new Image();
     img.onload = () => {
-      // Update canvas dimensions to match image
-      canvas.setDimensions({
-        width: img.width,
-        height: img.height
-      });
-      
       // Create fabric image and set as background
-      FabricImage.fromURL(imageData, (fabricImage) => {
-        if (fabricImage.width && fabricImage.height) {
-          fabricImage.scaleToWidth(canvas.width || img.width);
-          canvas.setBackgroundImage(fabricImage, canvas.renderAll.bind(canvas));
-        }
+      new FabricImage.fromURL(imageData, {
+        scaleX: canvas.width! / img.width,
+        scaleY: canvas.height! / img.height,
+      }).then(fabricImage => {
+        canvas.setBackgroundColor('#ffffff', () => {
+          canvas.backgroundImage = fabricImage;
+          canvas.renderAll();
+        });
       });
     };
     img.src = imageData;
