@@ -32,7 +32,6 @@ const Editor = () => {
     canvas.on('mouse:dblclick', (e) => {
       if (e.target && e.target instanceof Text) {
         canvas.setActiveObject(e.target);
-        // Make text editable on double click
         e.target.set('editable', true);
         canvas.requestRenderAll();
       }
@@ -54,7 +53,24 @@ const Editor = () => {
         fabricImage.scale(scale);
         canvas.backgroundColor = '#ffffff';
         canvas.backgroundImage = fabricImage;
-        canvas.renderAll();
+        
+        // Add editable text overlay
+        const headerText = new Text("First Bagless School in Meerut", {
+          left: canvas.width! * 0.5,
+          top: 50,
+          fontSize: 28,
+          fill: "#000000",
+          fontWeight: 'bold',
+          editable: true,
+          selectable: true,
+          originX: 'center',
+          originY: 'center',
+          textAlign: 'center',
+        });
+        
+        canvas.add(headerText);
+        canvas.requestRenderAll();
+        toast.info("Double-click the text to edit it");
       });
     };
     img.src = imageData;
