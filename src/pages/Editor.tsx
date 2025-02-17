@@ -42,7 +42,7 @@ const Editor = () => {
     // Load the image
     const img = new Image();
     img.onload = () => {
-      // Create fabric image and set as background
+      // Create fabric image
       FabricImage.fromURL(imageData).then(fabricImage => {
         // Calculate scale to fit the canvas
         const scale = Math.min(
@@ -51,26 +51,49 @@ const Editor = () => {
         );
         
         fabricImage.scale(scale);
+        
+        // Set image position
+        fabricImage.set({
+          left: 0,
+          top: 0,
+          selectable: false,
+        });
+        
         canvas.backgroundColor = '#ffffff';
         canvas.backgroundImage = fabricImage;
         
-        // Add editable text overlay
-        const headerText = new Text("First Bagless School in Meerut", {
-          left: canvas.width! * 0.5,
-          top: 50,
-          fontSize: 28,
-          fill: "#000000",
-          fontWeight: 'bold',
-          editable: true,
-          selectable: true,
-          originX: 'center',
-          originY: 'center',
-          textAlign: 'center',
-        });
+        // Create a temporary canvas to analyze the image
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = img.width;
+        tempCanvas.height = img.height;
+        const ctx = tempCanvas.getContext('2d');
         
-        canvas.add(headerText);
-        canvas.requestRenderAll();
-        toast.info("Double-click the text to edit it");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0);
+          
+          // Add editable text overlay
+          const headerText = new Text("First Bagless School in Meerut", {
+            left: canvas.width! * 0.5,
+            top: canvas.height! * 0.08, // Position at 8% from top
+            fontSize: 32,
+            fill: "#000000",
+            fontWeight: 'bold',
+            editable: true,
+            selectable: true,
+            originX: 'center',
+            originY: 'center',
+            textAlign: 'center',
+            strokeWidth: 0,
+            backgroundColor: 'rgba(255, 255, 255, 0.7)', // Semi-transparent background
+            padding: 5
+          });
+          
+          canvas.add(headerText);
+          canvas.setActiveObject(headerText);
+          canvas.requestRenderAll();
+          
+          toast.info("Click and drag to move the text, double-click to edit it");
+        }
       });
     };
     img.src = imageData;
@@ -90,6 +113,8 @@ const Editor = () => {
       fill: "#000000",
       editable: true,
       selectable: true,
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      padding: 5
     });
 
     canvas.add(text);
