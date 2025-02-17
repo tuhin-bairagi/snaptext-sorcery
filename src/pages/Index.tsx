@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Upload, Edit, Download, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 
