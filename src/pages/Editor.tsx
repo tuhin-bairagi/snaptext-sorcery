@@ -28,6 +28,14 @@ const Editor = () => {
       backgroundColor: '#ffffff'
     });
     
+    // Enable text editing on double click
+    canvas.on('mouse:dblclick', (e) => {
+      if (e.target && e.target instanceof Text) {
+        e.target.enterEditing();
+        e.target.selectAll();
+      }
+    });
+
     setCanvas(canvas);
 
     // Load the image
@@ -62,11 +70,18 @@ const Editor = () => {
       top: 100,
       fontSize: 20,
       fill: "#000000",
+      editable: true,
     });
 
     canvas.add(text);
     canvas.setActiveObject(text);
     canvas.renderAll();
+    
+    // Enter editing mode immediately for new text
+    text.enterEditing();
+    text.selectAll();
+
+    toast.info("Double-click any text to edit it");
   };
 
   const downloadImage = () => {
