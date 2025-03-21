@@ -17,7 +17,7 @@ const NavBar = () => {
               to="/"
               className="text-2xl font-bold text-primary-600 flex items-center space-x-2"
             >
-              <span>SnapText</span>
+              <span>ScreenshotEditor.Online</span>
             </Link>
           </div>
 

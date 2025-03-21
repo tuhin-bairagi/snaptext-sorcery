@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Upload, Edit, Download, ArrowRight } from "lucide-react";
+import { Upload, Edit, Download, ArrowRight, Image, Share2, MessageSquareQuestion, Fullscreen, Layers } from "lucide-react";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -89,94 +89,207 @@ const Index = () => {
                 </span>
               </label>
             </div>
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <button
+                onClick={() => document.getElementById("fileInput")?.click()}
+                className="bg-primary-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors"
+              >
+                Edit a screenshot now
+              </button>
+              <button
+                onClick={() => navigate("/about")}
+                className="bg-white text-primary-600 border border-primary-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+              >
+                Download App
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Steps to Edit Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">
-            How It Works
+            Steps to Edit Your Screenshots Online
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
               <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Upload className="w-6 h-6 text-primary-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Upload</h3>
+              <h3 className="text-xl font-semibold mb-2">1. Upload Screenshot</h3>
               <p className="text-gray-600">
-                Drag and drop or browse to upload your screenshot
+                Upload your screenshot from your device or paste it directly from clipboard
               </p>
             </div>
             <div className="text-center p-6">
               <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Edit className="w-6 h-6 text-primary-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Edit</h3>
+              <h3 className="text-xl font-semibold mb-2">2. Edit Screenshot</h3>
               <p className="text-gray-600">
-                Modify text, adjust size, and position as needed
+                Modify text, adjust formatting, add elements, or annotate your screenshot
               </p>
             </div>
             <div className="text-center p-6">
               <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Download className="w-6 h-6 text-primary-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Download</h3>
+              <h3 className="text-xl font-semibold mb-2">3. Download & Share</h3>
               <p className="text-gray-600">
-                Save your edited screenshot instantly
+                Save your edited screenshot as an image file or share it directly
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Blog Preview Section */}
+      {/* Features Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Latest from Our Blog</h2>
-            <p className="text-gray-600 mt-4">
-              Tips and tricks for screenshot editing
-            </p>
+          <h2 className="text-3xl font-bold text-center mb-16">
+            Why Use ScreenshotEditor.Online?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold mb-4 flex items-center">
+                <Image className="w-6 h-6 text-primary-600 mr-2" />
+                Add Backgrounds & Mockups to Screenshots
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Enhance your screenshots with beautiful backgrounds or device mockups to make them more professional and visually appealing.
+              </p>
+              <img 
+                src="/public/lovable-uploads/de756ea1-ae17-40e6-ac19-532d4f45f0e5.png" 
+                alt="Screenshot with background" 
+                className="rounded-lg w-full h-48 object-cover"
+              />
+            </div>
+            
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold mb-4 flex items-center">
+                <Layers className="w-6 h-6 text-primary-600 mr-2" />
+                Edit Multiple Screenshots in Single View
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Upload and modify multiple screenshots in one session, perfect for creating tutorials or documentation with multiple steps.
+              </p>
+              <img 
+                src="/placeholder.svg" 
+                alt="Multiple screenshots editing" 
+                className="rounded-lg w-full h-48 object-cover"
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold mb-4 flex items-center">
+                <Share2 className="w-6 h-6 text-primary-600 mr-2" />
+                Resize Screenshots for Social Media
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Automatically resize and optimize your screenshots for various social media platforms with just one click.
+              </p>
+              <img 
+                src="/placeholder.svg" 
+                alt="Social media optimization" 
+                className="rounded-lg w-full h-48 object-cover"
+              />
+            </div>
+            
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <h3 className="text-2xl font-semibold mb-4 flex items-center">
+                <Fullscreen className="w-6 h-6 text-primary-600 mr-2" />
+                Share Screenshots Online
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Generate shareable links for your edited screenshots that you can send to colleagues or include in documentation.
+              </p>
+              <img 
+                src="/placeholder.svg" 
+                alt="Screenshot sharing" 
+                className="rounded-lg w-full h-48 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            FAQs About Screenshot Editor Online
+          </h2>
+          
+          <div className="space-y-6">
+            <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <button className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-gray-50">
+                <h3 className="text-lg font-medium text-gray-900">Can I edit screenshots taken from any device?</h3>
+                <span className="ml-6 flex-shrink-0">+</span>
+              </button>
+              <div className="px-6 pb-6">
+                <p className="text-gray-600">
+                  Yes, you can edit screenshots taken from any device including desktop, mobile, tablet, or even from other applications. Our editor supports common image formats like PNG, JPG, and WebP.
+                </p>
+              </div>
+            </div>
+            
+            <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <button className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-gray-50">
+                <h3 className="text-lg font-medium text-gray-900">What is a screenshot editor online?</h3>
+                <span className="ml-6 flex-shrink-0">+</span>
+              </button>
+              <div className="px-6 pb-6">
+                <p className="text-gray-600">
+                  A screenshot editor online is a web-based tool that allows you to modify screenshots without installing any software. You can add text, highlight areas, blur sensitive information, and more directly in your browser.
+                </p>
+              </div>
+            </div>
+            
+            <div className="border border-gray-200 rounded-lg overflow-hidden">
+              <button className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-gray-50">
+                <h3 className="text-lg font-medium text-gray-900">Is my data secure when using ScreenshotEditor.Online?</h3>
+                <span className="ml-6 flex-shrink-0">+</span>
+              </button>
+              <div className="px-6 pb-6">
+                <p className="text-gray-600">
+                  Yes, we prioritize your privacy and security. Your screenshots are processed in your browser and not sent to any server unless you explicitly choose to save or share them. We don't store your images permanently on our servers.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Try More Tools Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Try More Tools
+          </h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              {
-                title: "How to Edit Screenshots Like a Pro",
-                excerpt:
-                  "Learn the best practices for editing screenshots effectively...",
-                date: "March 15, 2024",
-              },
-              {
-                title: "Top 10 Screenshot Tools in 2024",
-                excerpt:
-                  "Discover the best screenshot editing tools available today...",
-                date: "March 10, 2024",
-              },
-              {
-                title: "Screenshot Editing for Beginners",
-                excerpt:
-                  "A complete guide to getting started with screenshot editing...",
-                date: "March 5, 2024",
-              },
-            ].map((post, index) => (
-              <article
+              { icon: <Image className="w-6 h-6" />, name: "Image Editor" },
+              { icon: <Edit className="w-6 h-6" />, name: "Text Editor" },
+              { icon: <MessageSquareQuestion className="w-6 h-6" />, name: "QR Generator" },
+              { icon: <Fullscreen className="w-6 h-6" />, name: "Screen Recorder" },
+              { icon: <Layers className="w-6 h-6" />, name: "PDF Editor" }
+            ].map((tool, index) => (
+              <Link 
                 key={index}
-                className="bg-white rounded-lg shadow-sm overflow-hidden"
+                to="#"
+                className="flex flex-col items-center bg-white p-6 rounded-lg hover:shadow-md transition-shadow"
               >
-                <div className="p-6">
-                  <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                  <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <Link
-                    to="/blog"
-                    className="inline-flex items-center text-primary-600 hover:text-primary-700"
-                  >
-                    Read more <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
+                <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mb-4">
+                  {tool.icon}
                 </div>
-              </article>
+                <span className="text-sm font-medium text-center">{tool.name}</span>
+              </Link>
             ))}
           </div>
         </div>
