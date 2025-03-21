@@ -48,10 +48,18 @@ const Editor = () => {
 
       try {
         const worker = await createWorker();
+        
+        // These are async operations
+        await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
         
-        const { data: { words } } = await worker.recognize(imageData);
+        // Perform OCR on the image
+        const result = await worker.recognize(imageData);
+        
+        // Access the recognized text data correctly
+        const words = result.data.words || [];
+        
         await worker.terminate();
 
         // Load the image after text detection
