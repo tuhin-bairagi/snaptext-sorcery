@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Upload, Edit, Download, ArrowRight, Image, Share2, MessageSquareQuestion, Fullscreen, Layers } from "lucide-react";
+import { Upload, Edit, Download, ArrowRight, Image, Share2, MessageSquare, Fullscreen, Layers } from "lucide-react";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -276,7 +275,7 @@ const Index = () => {
             {[
               { icon: <Image className="w-6 h-6" />, name: "Image Editor" },
               { icon: <Edit className="w-6 h-6" />, name: "Text Editor" },
-              { icon: <MessageSquareQuestion className="w-6 h-6" />, name: "QR Generator" },
+              { icon: <MessageSquare className="w-6 h-6" />, name: "QR Generator" },
               { icon: <Fullscreen className="w-6 h-6" />, name: "Screen Recorder" },
               { icon: <Layers className="w-6 h-6" />, name: "PDF Editor" }
             ].map((tool, index) => (
